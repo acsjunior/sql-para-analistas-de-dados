@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "sql-para-analistas-de-dados"
+version = "0.1.0"
+description = ""
+authors = ["António Júnior <juniorssz@gmail.com>"]
+readme = "README.md"
+packages = [{include = "sql_para_analistas_de_dados"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+jupyter-book = "^0.15.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
