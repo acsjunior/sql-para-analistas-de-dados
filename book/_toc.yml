@@ -6,4 +6,4 @@ root: index
 options:
   numbered: true
 chapters:
-  - file: content/introduction
+  - file: content/01/introduction
