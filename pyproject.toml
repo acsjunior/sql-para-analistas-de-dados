@@ -9,6 +9,7 @@ packages = [{include = "sql_para_analistas_de_dados"}]
 [tool.poetry.dependencies]
 python = "^3.9"
 jupyter-book = "^0.15.1"
+ghp-import = "^2.1.0"
 
 
 [build-system]
