@@ -7,3 +7,4 @@ options:
   numbered: true
 chapters:
   - file: content/01/introduction
+  - file: content/02/relationship
