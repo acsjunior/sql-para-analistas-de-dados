@@ -8,3 +8,4 @@ options:
 chapters:
   - file: content/01/introduction
   - file: content/02/relationship
+  - file: content/03/sql

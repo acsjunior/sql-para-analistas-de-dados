@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>1. Introdução &#8212; SQL para Analistas de Dados</title>
+    <title>3. Consultas SQL &#8212; SQL para Analistas de Dados</title>
   
   
   
@@ -61,11 +61,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'content/01/introduction';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/03/sql';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2. Relacionamentos" href="../02/relationship.html" />
-    <link rel="prev" title="Prefácio" href="../../index.html" />
+    <link rel="prev" title="2. Relacionamentos" href="../02/relationship.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -151,9 +150,9 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Introdução</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01/introduction.html">1. Introdução</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02/relationship.html">2. Relacionamentos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03/sql.html">3. SQL</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Consultas SQL</a></li>
 </ul>
 
     </div>
@@ -225,7 +224,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/juniorssz/sql-para-analistas-de-dados/issues/new?title=Issue%20on%20page%20%2Fcontent/01/introduction.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/juniorssz/sql-para-analistas-de-dados/issues/new?title=Issue%20on%20page%20%2Fcontent/03/sql.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -255,7 +254,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/content/01/introduction.ipynb" target="_blank"
+      <li><a href="../../_sources/content/03/sql.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -337,7 +336,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introdução</h1>
+    <h1>Consultas SQL</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -347,8 +346,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-e-sql">1.1. O que é SQL?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-reproduzir-os-exemplos">1.2. Como reproduzir os exemplos?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-basica">3.1. Estrutura básica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condicoes">3.2. Condições</a></li>
 </ul>
             </nav>
         </div>
@@ -360,138 +359,31 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introducao">
-<h1><span class="section-number">1. </span>Introdução<a class="headerlink" href="#introducao" title="Permalink to this heading">#</a></h1>
-<p>O objetivo deste capítulo é introduzir ao leitor o que exatamente é SQL, e orientar como reproduzir facilmente os códigos ao longo do livro.</p>
-<section id="o-que-e-sql">
-<h2><span class="section-number">1.1. </span>O que é SQL?<a class="headerlink" href="#o-que-e-sql" title="Permalink to this heading">#</a></h2>
-<p>Para definirmos o que é SQL, precisamos antes passar pelos seguintes conceitos:</p>
-<ul class="simple">
-<li><p><strong>Dados</strong> são valores que, de forma isolada, não possuem significado ou utilidade. Podemos pensar em dados como matéria-prima para informação. Por exemplo, imagine um arquivo composto por fichas de pacientes de uma clínica. Cada ficha é composta por dados de pacientes, como, por exemplo, nome, endereço e datas das consultas. Observe que dado é o elemento básico deste arquivo.</p></li>
-<li><p><strong>Registro</strong> é a combinação de diferentes dados, de modo a criar algum contexto e sentido para os mesmos. No exemplo do arquivo de pacientes da clínica, observe que os dados de cada ficha, de forma isolada, não possuem utilidade. No entanto, a combinação dos dados na ficha de um particular paciente, ou melhor, em um registro, gera contexto e significado para eles.</p></li>
-<li><p><strong>Informação</strong> é o resultado do processamento e interpretação dos dados. Por exemplo, o número de dias desde a última consulta de um determinado paciente é uma informação extraída a partir da interpretação de um registro. Outro exemplo, o dia da semana com o maior número de atendimento é uma informação extraída a partir do processamento dos dados de todos os registros.</p></li>
-<li><p><strong>Banco de dados</strong> é uma coleção de arquivos inter-relacionados. No exemplo da clínica, além do arquivo dos pacientes, podemos considerar que existem mais arquivos como, por exemplo, o dos funcionários. Estes arquivos em conjunto formam o banco de dados da clínica. Observe que o conceito de banco de dados se aplica tanto para dados informatizados como não informatizados.</p></li>
-<li><p><strong>SGBD</strong> (Sistema Gerenciador de Banco de Dados) é um programa para gerenciar e facilitar o uso do banco de dados, atuando como uma interface entre os usuários e o banco de dados. Por meio do SGBD é possível não só ler os dados armazenados, como inserir novos, atualizá-los e removê-los de forma eficiente e segura, entre outras funcionalidades. No exemplo da clínica, uma vez que seus dados são não informatizados, podemos imaginar que o papel do SGBD poderia ser realizado por uma pessoa responsável por gerenciar os arquivos. Esta pessoa seria responsável buscar, inserir, alterar e apagar os registros dos pacientes sob solicitação, por exemplo, de uma secretária.</p></li>
-</ul>
-<p>Podemos classificar os dados em três grupos:</p>
-<ul class="simple">
-<li><p><strong>Estruturados</strong>: São os dados que seguem uma estrutura organizacional pré-definida. Quando voltamos ao exemplo do cadastro dos pacientes, todo cadastro obedece a mesma estrutura (mesmos campos). Logo, poderiamos facilmente armazená-los eletronicamente em uma tabela, onde cada linha representa o registro de um paciente e cada coluna, um campo presente na ficha.</p></li>
-<li><p><strong>Não estruturados</strong>: São os dados que não se encaixam em uma estrutura organizacional pré definida. No exemplo da clínica poderíamos dizer que a imagem do raio-x é um dado não estruturado. Fotos, vídeos, áudios e textos livres são alguns exemplos de dados não estruturados.</p></li>
-<li><p><strong>Semiestruturados</strong>: São dados que possuem estrutura organizacional, mas esta estrutura pode variar. No exemplo da clínica foi dito que as fichas dos pacientes são compostas pelos campos nome, endereço e datas das consultas. Agora imagine se os campos presentes não fossem exatamente os mesmos em cada ficha. Neste caso poderíamos dizer que estaríamos lidando com dados semiestruturados.</p></li>
-</ul>
-<p>Já os bancos de dados possuem diferentes tipos, cada um projetado para atender diferentes necessidades. Podemos classificar os mais conhecidos em dois grupos:</p>
-<ul class="simple">
-<li><p><strong>Relacionais</strong>: É o tipo de banco de dados mais popular, projetado para garantir a consistência e a integridade dos dados. Neste tipo os registros são organizados em tabelas que podem ser relacionadas por meio de chaves (campos identificadores). Alguns dos SGBDs mais conhecidos são MySQL, SQL Server, Oracle Database, PortgreSQL, SQLite.</p></li>
-<li><p><strong>NoSQL</strong> (Not Only SQL): Este tipo é projetado para lidar com dados não estruturados ou semiestruturados. O armazenamento dos dados pode ser feito em formato de documentos, grafos, chave-valor ou colunas. Alguns dos SGBDs mais conhecidos são MongoDB, Cassandra, Neo4j, Redis e HBase.</p></li>
-</ul>
-<p>Finalmente podemos definir <strong>SQL</strong> (Structured Query Language ou Linguagem de Consulta Estruturada) como uma linguagem de programação baseada em álgebra relacional, que surgiu nos anos 70 para interação com <strong>bancos de dados relacionais</strong>. Diferentemente de linguagens como Python, que são consideradas imperativas (isto é, o programador precisa especificar passo a passo o que o sistema deve executar para que um determinado resultado seja obtido), SQL é uma linguagem declarativa, o que na prática significa que o programador declara qual resultado deseja e permite que o sistema determine como obtê-lo. No exemplo da clínica, supondo que ela passou por uma transformação digital, e todos aqueles dados agora estão armazenados eletronicamente em um banco de dados relacional, agora operações de CRUD (create, read, update, delete ou inserção, leitura, atualização e remoção), entre outras operações, devem ser realizadas via instruções em linguagem SQL por meio de um SGBD.</p>
-<p>A linguagem SQL pode ser dividida nas seguintes partes:</p>
-<ul class="simple">
-<li><p><strong>DDL</strong> (<em>Data Definition Language</em> ou Linguagem de Definição de Dados): engloba comandos para criação (<code>CREATE</code>), alteração (<code>ALTER</code>) e deleção (<code>DROP</code>) de objetos em um banco de dados;</p></li>
-<li><p><strong>DML</strong> (<em>Data Manipulation Language</em> ou Linguagem de Manipulação de Dados): engolba comandos para operações de CRUD no banco de dados, entre eles os comandos de inserção de novos dados (<code>INSERT</code>), consulta ou leitura no banco de dados (<code>SELECT</code>), atualização nos dados (<code>UPDATE</code>) e remoção de linhas (<code>DELETE</code>). Em alguns materiais o comando <code>SELECT</code> faz parte de um grupo chamado DQL (<em>Data Query Language</em> ou Linguagem de Consulta de Dados).</p></li>
-<li><p><strong>DCL</strong> (<em>Data Control Language</em> ou Linguagem de Controle de Dados): engloba comandos para controle de acesso aos dados, entre eles o <code>GRANT</code> para conceder e o <code>REVOKE</code> para retirar privilégios de acesso;</p></li>
-<li><p><strong>DTL</strong> (<em>Data Transaction Language</em> ou Linguagem de Transação de Dados): engloba comandos para o controle de transações no banco de dados, entre eles os comando <code>BEGIN</code>, <code>COMMIT</code> e <code>ROLLBACK</code>, para o início, fim e reversão de uma transação, respectivamente.</p></li>
-</ul>
-<p>A maioria das operações em banco de dados no contexto da ciência de dados é realizada por meio de comandos DML, em especial o SELECT. Os comandos DDL também são utilizados, porém em menor escala. Já os comandos DCL e DTL são menos comuns de serem utilizados por profissionais de ciência de dados.</p>
-<p>A maioria das operações em banco de dados no contexto da ciência de dados é realizada por meio de comandos DML, em especial o <code>SELECT</code>. Além disso, para prepararmos o ambiente necessário para a prática, bem como exemplificar conceitos de normalização e relacionamentos que serão vistos, alguns comandos DDL também serão utilizados. Sendo assim, este livro irá desprezar a partir de agora os comandos DCL e DTL.</p>
-</section>
-<section id="como-reproduzir-os-exemplos">
-<span id="introduction-reproduction"></span><h2><span class="section-number">1.2. </span>Como reproduzir os exemplos?<a class="headerlink" href="#como-reproduzir-os-exemplos" title="Permalink to this heading">#</a></h2>
-<p>Neste seção você vai aprender como como criar um banco de dados <a class="reference external" href="https://www.sqlite.org/index.html">SQLite</a> e executar instruções SQL no <a class="reference external" href="https://jupyter.org/">Jupyter Notebook</a>. Este conhecimento é necessário para a reprodução dos exemplos em todo o livro.</p>
-<p>Como primeiro passo, instale as seguintes bibliotecas no seu ambiente Python:</p>
-<ul class="simple">
-<li><p>ipykernel</p></li>
-<li><p>ipython-sql</p></li>
-</ul>
-<div class="important admonition">
-<p class="admonition-title">Importante</p>
-<p>Os exemplos práticos deste livro foram desenvolvidos utilizando Python 3.9.13 com as bibliotecas ipykernel e ipython-sql nas versões 6.25.0 e 0.5.0, respectivamente. Em caso de problemas para reproduzir os exemplos, considere utilizar as mesmas versões.</p>
-</div>
-<div class="tip admonition">
-<p class="admonition-title">Dica</p>
-<p>Para instalar a versão específica de uma biblioteca, por exemplo, ipython-sql 0.5.0, execute no notebook <code>!pip install ipython-sql==0.5.0</code>.</p>
-</div>
-<p>Instaladas todas as dependências, execute o seguinte <strong>comando mágico</strong> no notebook:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="consultas-sql">
+<h1><span class="section-number">3. </span>Consultas SQL<a class="headerlink" href="#consultas-sql" title="Permalink to this heading">#</a></h1>
+<p>Neste capítulo utilizaremos extensivamente a instrução <code>SELECT</code> para realizar consultas no banco de dados criado no capítulo anterior.</p>
+<section id="estrutura-basica">
+<h2><span class="section-number">3.1. </span>Estrutura básica<a class="headerlink" href="#estrutura-basica" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> sql
+<span class="o">%</span><span class="k">sql</span> sqlite:///ecom.db
 </pre></div>
 </div>
 </div>
 </div>
-<p>Este comando carrega a extensão <strong>sql</strong>, utilizada para estabelecer a conexão com o banco de dados que iremos criar.</p>
-<div class="tip admonition">
-<p class="admonition-title">Dica</p>
-<p>Os comandos mágicos do Jupyter Notebook são funções que fornecem funcionalidades extras ao notebook, além do que pode-se realizar via código Python.</p>
-<p>Para saber mais, acesse esta <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">documentação</a>.</p>
-</div>
-<p>Em seguida, execute o comando abaixo para conectar-se com o banco de dados SQLite. Caso o banco ainda não exista, ele será criado. Note que <strong>mydb.db</strong> é o nome escolhido para para o banco de dados neste exemplo. Você pode escolher outro nome mais conveniente, caso deseje.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span> sqlite:///mydb.db
-</pre></div>
-</div>
-</div>
-</div>
-<p>Com o banco de dados criado criado, agora é possível executar instruções SQL. Vamos criar, como exemplo, a tabela TB_CLIENTE:</p>
+<p>A instrução <code>SELECT</code> é utilizada para realizar consultas no banco de dados. Por exemplo, para consultar todos os registros da tabela <strong>tb_cliente</strong>, utilizamos a seguinte instrução:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
 
-CREATE TABLE tb_cliente ( 
-	cd_cliente INTEGER PRIMARY KEY,
-	nm_cliente TEXT NOT NULL,
-	ds_email TEXT NOT NULL UNIQUE
-);
+SELECT *
+FROM tb_cliente
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///mydb.db
-Done.
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
-</pre></div>
-</div>
-</div>
-</div>
-<p>Observe que agora o comando mágico foi executado utilizando <strong>%%</strong> ao invés de <strong>%</strong>. Isto se deve ao fato de <strong>%</strong> ser aplicado a comandos orientados a linha, enquanto <strong>%%</strong>, a comandos orientados a célula. Você pode aprender mais sobre comandos mágicos nesta <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">documentação</a>.</p>
-<p>Para enriquecer o exemplo, vamos inserir alguns dados na tabela recém criada:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-
-INSERT INTO tb_cliente (nm_cliente, ds_email) 
-VALUES
-    (&#39;Hildemar Diniz Monarco&#39; , &#39;monarco@gmail.com&#39;),
-    (&#39;Dona Ivone Lara&#39; , &#39;donaivone@gmail.com&#39;),
-    (&#39;Antônio Candeia&#39; , &#39;candeia@yahoo.com&#39;),
-    (&#39;Jovelina Pérola Negra&#39; , &#39;perolanegra@yahoo.com&#39;);
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///mydb.db
-4 rows affected.
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
-</pre></div>
-</div>
-</div>
-</div>
-<p>Por fim, vamos consultar os dados da tabela TB_CLIENTE:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
-
-SELECT * FROM TB_CLIENTE
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///mydb.db
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///ecom.db
 Done.
 </pre></div>
 </div>
@@ -501,33 +393,376 @@ Done.
             <th>cd_cliente</th>
             <th>nm_cliente</th>
             <th>ds_email</th>
+            <th>dt_nascimento</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>1</td>
-            <td>Hildemar Diniz Monarco</td>
-            <td>monarco@gmail.com</td>
+            <td>Noel Rosa</td>
+            <td>noelrosa@gmail.com</td>
+            <td>1910-12-11</td>
         </tr>
         <tr>
             <td>2</td>
-            <td>Dona Ivone Lara</td>
-            <td>donaivone@gmail.com</td>
+            <td>Clara Nunes</td>
+            <td>claranunes@yahoo.com</td>
+            <td>1942-08-12</td>
         </tr>
         <tr>
             <td>3</td>
-            <td>Antônio Candeia</td>
-            <td>candeia@yahoo.com</td>
+            <td>Clementina de Jesus</td>
+            <td>clementinadejesus@yahoo.com</td>
+            <td>1901-02-07</td>
         </tr>
         <tr>
             <td>4</td>
-            <td>Jovelina Pérola Negra</td>
-            <td>perolanegra@yahoo.com</td>
+            <td>Angenor de Oliveira Cartola</td>
+            <td>cartola@gmail.com</td>
+            <td>1908-10-11</td>
         </tr>
     </tbody>
 </table></div></div>
 </div>
-<p>Pronto, agora você já sabe como criar bancos de dados e executar instruções SQL no Jupyter Notebook.</p>
+<p>Observe que a estrutura da consulta pode ser interpretada como uma instrução para o SGBD:</p>
+<p><em>Selecione (SELECT) todas as colunas (*) da tabela (FROM) tb_cliente.</em></p>
+<p>Nem sempre precisamos de todas as colunas na nossa consulta. Por exemplo, para selecionar somente as colunas <strong>cd_cliente</strong> e <strong>nm_cliente</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+SELECT cd_cliente, nm_cliente
+FROM tb_cliente
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///ecom.db
+Done.
+</pre></div>
+</div>
+<div class="output text_html"><table>
+    <thead>
+        <tr>
+            <th>cd_cliente</th>
+            <th>nm_cliente</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Noel Rosa</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Clara Nunes</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Clementina de Jesus</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Angenor de Oliveira Cartola</td>
+        </tr>
+    </tbody>
+</table></div></div>
+</div>
+<p>A instrução pode ser lida da seguinte forma:</p>
+<p><em>Selecione (SELECT) as colunas cd_cliente e nm_cliente da tabela (FROM) tb_cliente.</em></p>
+<p>Assim como podemos limitar as colunas da consulta, também podemos limitar a quantidade de registros. Por exemplo, para selecionar somente clientes com data de nascimento a partir de 1910:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+SELECT *
+FROM tb_cliente 
+WHERE dt_nascimento &gt;= &#39;1910-01-01&#39;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///ecom.db
+Done.
+</pre></div>
+</div>
+<div class="output text_html"><table>
+    <thead>
+        <tr>
+            <th>cd_cliente</th>
+            <th>nm_cliente</th>
+            <th>ds_email</th>
+            <th>dt_nascimento</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Noel Rosa</td>
+            <td>noelrosa@gmail.com</td>
+            <td>1910-12-11</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Clara Nunes</td>
+            <td>claranunes@yahoo.com</td>
+            <td>1942-08-12</td>
+        </tr>
+    </tbody>
+</table></div></div>
+</div>
+<p>Perceba que a instrução pode ser lida da seguinte forma:</p>
+<p><em>Selecione (SELECT) todas as colunas (*) da tabela (FROM) tb_cliente, mas somente registros onde (WHERE) a data de nascimento seja maior ou igual a 01/01/1910.</em></p>
+</section>
+<section id="condicoes">
+<h2><span class="section-number">3.2. </span>Condições<a class="headerlink" href="#condicoes" title="Permalink to this heading">#</a></h2>
+<p>Por meio da cláusula <code>WHERE</code> podemos definir condições para selecionar um subconjunto de registros. Vamos ver alguns exemplos.</p>
+<p>Para selecionar clientes com data de nascimento entre 11/10/1908 e 31/12/1940:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+SELECT *
+FROM tb_cliente
+WHERE dt_nascimento &gt;= &#39;1908-10-11&#39; AND dt_nascimento &lt;= &#39;1940-12-31&#39;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///ecom.db
+Done.
+</pre></div>
+</div>
+<div class="output text_html"><table>
+    <thead>
+        <tr>
+            <th>cd_cliente</th>
+            <th>nm_cliente</th>
+            <th>ds_email</th>
+            <th>dt_nascimento</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Noel Rosa</td>
+            <td>noelrosa@gmail.com</td>
+            <td>1910-12-11</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Angenor de Oliveira Cartola</td>
+            <td>cartola@gmail.com</td>
+            <td>1908-10-11</td>
+        </tr>
+    </tbody>
+</table></div></div>
+</div>
+<p>Observe que foi usado apenas o operador <code>AND</code> para estruturar a condição. Mas existe uma maneira de simplificar esta condição, utilizando a cláusula <code>BETWEEN</code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+SELECT *
+FROM tb_cliente
+WHERE dt_nascimento BETWEEN &#39;1908-10-11&#39; AND &#39;1940-12-31&#39;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///ecom.db
+Done.
+</pre></div>
+</div>
+<div class="output text_html"><table>
+    <thead>
+        <tr>
+            <th>cd_cliente</th>
+            <th>nm_cliente</th>
+            <th>ds_email</th>
+            <th>dt_nascimento</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Noel Rosa</td>
+            <td>noelrosa@gmail.com</td>
+            <td>1910-12-11</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Angenor de Oliveira Cartola</td>
+            <td>cartola@gmail.com</td>
+            <td>1908-10-11</td>
+        </tr>
+    </tbody>
+</table></div></div>
+</div>
+<p>Selecionando o nome dos clientes com data de nascimento entre 11/10/1908 e 31/12/1940:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+SELECT 
+    nm_cliente
+FROM tb_cliente
+WHERE dt_nascimento BETWEEN &#39;1908-10-11&#39; AND &#39;1940-12-31&#39;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///ecom.db
+Done.
+</pre></div>
+</div>
+<div class="output text_html"><table>
+    <thead>
+        <tr>
+            <th>nm_cliente</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Noel Rosa</td>
+        </tr>
+        <tr>
+            <td>Angenor de Oliveira Cartola</td>
+        </tr>
+    </tbody>
+</table></div></div>
+</div>
+<p>Selecionando o nome dos clientes que nasceram antes de 01/01/1908 ou depois de 31/12/1910:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+SELECT 
+    nm_cliente
+FROM tb_cliente
+WHERE dt_nascimento &lt; &#39;1908-01-01&#39;
+ OR dt_nascimento &gt; &#39;1910-12-31&#39;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///ecom.db
+Done.
+</pre></div>
+</div>
+<div class="output text_html"><table>
+    <thead>
+        <tr>
+            <th>nm_cliente</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Clara Nunes</td>
+        </tr>
+        <tr>
+            <td>Clementina de Jesus</td>
+        </tr>
+    </tbody>
+</table></div></div>
+</div>
+<p>Selecionando os clientes com código 1, 2 ou 4.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+SELECT 
+    *
+FROM tb_cliente
+WHERE cd_cliente = 1
+    OR cd_cliente = 2
+    OR cd_cliente = 4
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///ecom.db
+Done.
+</pre></div>
+</div>
+<div class="output text_html"><table>
+    <thead>
+        <tr>
+            <th>cd_cliente</th>
+            <th>nm_cliente</th>
+            <th>ds_email</th>
+            <th>dt_nascimento</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Noel Rosa</td>
+            <td>noelrosa@gmail.com</td>
+            <td>1910-12-11</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Clara Nunes</td>
+            <td>claranunes@yahoo.com</td>
+            <td>1942-08-12</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Angenor de Oliveira Cartola</td>
+            <td>cartola@gmail.com</td>
+            <td>1908-10-11</td>
+        </tr>
+    </tbody>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">sql</span>
+
+SELECT 
+    *
+FROM tb_cliente
+WHERE cd_cliente IN (1,2,4)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> * sqlite:///ecom.db
+Done.
+</pre></div>
+</div>
+<div class="output text_html"><table>
+    <thead>
+        <tr>
+            <th>cd_cliente</th>
+            <th>nm_cliente</th>
+            <th>ds_email</th>
+            <th>dt_nascimento</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Noel Rosa</td>
+            <td>noelrosa@gmail.com</td>
+            <td>1910-12-11</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Clara Nunes</td>
+            <td>claranunes@yahoo.com</td>
+            <td>1942-08-12</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Angenor de Oliveira Cartola</td>
+            <td>cartola@gmail.com</td>
+            <td>1908-10-11</td>
+        </tr>
+    </tbody>
+</table></div></div>
+</div>
 </section>
 </section>
 
@@ -544,7 +779,7 @@ Done.
         },
         kernelOptions: {
             name: "python3",
-            path: "./content/01"
+            path: "./content/03"
         },
         predefinedOutput: true
     }
@@ -563,22 +798,13 @@ Done.
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../../index.html"
+       href="../02/relationship.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Prefácio</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../02/relationship.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title"><span class="section-number">2. </span>Relacionamentos</p>
       </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div></div>
   
@@ -598,8 +824,8 @@ Done.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#o-que-e-sql">1.1. O que é SQL?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-reproduzir-os-exemplos">1.2. Como reproduzir os exemplos?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estrutura-basica">3.1. Estrutura básica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#condicoes">3.2. Condições</a></li>
 </ul>
   </nav></div>
 
